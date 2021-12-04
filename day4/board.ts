@@ -1,4 +1,3 @@
-import { zip as _zip } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
 import { eventEmitter, Events } from "./event-emitter.ts";
 
 type Position = {
@@ -49,8 +48,8 @@ export default class Board {
 
   private isWinningPosition({ row, col }: Position) {
     if (
-      this.data[row].every((el) => el === "#") ||
-      (_zip(...this.data)[col] as (number | "#")[]).every((el) => el === "#")
+      this.data[row].every((cell) => cell === "#") ||
+      this.data.every((row) => row[col] === "#")
     ) {
       return true;
     }
