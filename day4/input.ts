@@ -27,6 +27,4 @@ export const parseInput = async (): Promise<{
   const boardData = boardsInput.map((b) => parseBoardInput(b));
 
   return { numbers, boardData };
-
-  return { numbers: [], boardData: [] };
 };
