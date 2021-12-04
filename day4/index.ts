@@ -4,6 +4,7 @@ import Board from "./board.ts";
 
 try {
   const t0 = performance.now();
+
   const boardScores: number[] = [];
   const { numbers, boardData } = await parseInput();
 

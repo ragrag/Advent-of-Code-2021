@@ -14,6 +14,7 @@ export default class Board {
     if (!(boardData?.length === 5) || !(boardData?.[0].length === 5)) {
       throw new Error("Invalid board");
     }
+
     this.boardPositionsMap = new Map();
     this.data = boardData;
 
@@ -34,10 +35,13 @@ export default class Board {
     if (this.finished) {
       return;
     }
+
     const numberBoardPosition = this.boardPositionsMap.get(num);
+
     if (numberBoardPosition) {
       const { row, col } = numberBoardPosition;
       this.data[row][col] = "#";
+
       if (this.isWinningPosition(numberBoardPosition)) {
         this.finished = true;
         const totalScore = this.calculateTotalScore(num);
