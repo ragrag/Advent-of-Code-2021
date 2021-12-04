@@ -3,6 +3,7 @@ import { Events, eventEmitter } from "./event-emitter.ts";
 import Board from "./board.ts";
 
 try {
+  const t0 = performance.now();
   const boardScores: number[] = [];
   const { numbers, boardData } = await parseInput();
 
@@ -18,9 +19,12 @@ try {
     eventEmitter.emit(Events.turn, n);
   });
 
+  const t1 = performance.now();
   console.log(
     `First board score ${boardScores[0]} last board score ${boardScores.pop()}`
   );
+
+  console.log(`calculation took ${t1 - t0} ms`);
 } catch (err) {
   console.error(`${err}`);
 }
