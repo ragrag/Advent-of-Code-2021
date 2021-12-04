@@ -30,17 +30,17 @@ export default class Board {
     });
   };
 
-  private evaluateTurn = (n: number) => {
+  private evaluateTurn = (num: number) => {
     if (this.finished) {
       return;
     }
-    const numberPositionInBoard = this.boardPositionsMap.get(n);
-    if (numberPositionInBoard) {
-      const { row, col } = numberPositionInBoard;
+    const numberBoardPosition = this.boardPositionsMap.get(num);
+    if (numberBoardPosition) {
+      const { row, col } = numberBoardPosition;
       this.data[row][col] = "#";
-      if (this.isWinningPosition(numberPositionInBoard)) {
+      if (this.isWinningPosition(numberBoardPosition)) {
         this.finished = true;
-        const totalScore = this.calculateTotalScore() * n;
+        const totalScore = this.calculateTotalScore(num);
         eventEmitter.emit(Events.finish, totalScore);
       }
     }
@@ -56,9 +56,12 @@ export default class Board {
     return false;
   }
 
-  private calculateTotalScore() {
-    return this.data
-      .flat()
-      .reduce<number>((acc, cur) => acc + (cur !== "#" ? cur : 0), 0);
+  private calculateTotalScore(lastNumber: number) {
+    return (
+      this.data
+        .flat()
+        .reduce<number>((acc, cur) => acc + (cur !== "#" ? cur : 0), 0) *
+      lastNumber
+    );
   }
 }

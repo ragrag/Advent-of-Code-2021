@@ -19,11 +19,11 @@ try {
     eventEmitter.emit(Events.turn, n);
   });
 
-  const t1 = performance.now();
   console.log(
     `First board score ${boardScores[0]} last board score ${boardScores.pop()}`
   );
 
+  const t1 = performance.now();
   console.log(`calculation took ${t1 - t0} ms`);
 } catch (err) {
   console.error(`${err}`);
