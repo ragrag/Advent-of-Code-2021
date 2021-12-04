@@ -14,9 +14,9 @@ try {
     boardScores.push(totalScore);
   });
 
-  for (const n of numbers) {
+  numbers.forEach((n) => {
     eventEmitter.emit(Events.turn, n);
-  }
+  });
 
   console.log(
     `First board score ${boardScores[0]} last board score ${boardScores.pop()}`
