@@ -23,11 +23,13 @@ export default class Board {
         this.boardPositionsMap.set(boardData[i][j], { row: i, col: j });
       }
     }
+  }
 
+  public joinBingoGame = () => {
     eventEmitter.on(Events.turn, (n: number) => {
       this.evaluateTurn(n);
     });
-  }
+  };
 
   private evaluateTurn = (n: number) => {
     if (this.finished) {

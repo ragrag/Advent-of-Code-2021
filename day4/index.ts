@@ -7,7 +7,7 @@ try {
   const { numbers, boardData } = await parseInput();
 
   boardData.forEach((b) => {
-    new Board(b);
+    new Board(b).joinBingoGame();
   });
 
   eventEmitter.on(Events.finish, (totalScore: number) => {
